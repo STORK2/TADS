@@ -1,0 +1,65 @@
+<% include header %>
+<div class="row">
+	<div class="small-12 columns text-right">
+		<a href="/logout">Logout</a>
+	</div>
+</div>
+<div class="row">
+	<div class="small-12 columns text-center">
+		<h3>Document Management</h3>
+	</div>
+</div>
+
+
+<% if(nPDFs == 0){ %>
+
+<div class="row">
+	<hr>
+	<div class="small-12 columns text-center">
+		<h5>You have no documents yet</h5>
+		<p></p>
+	</div>
+	<hr>
+</div>
+
+<% }else{ %> 
+
+<% var nFill = nPDFs - Math.floor(nPDFs/6)*6 %>
+
+<div class="row">
+	<hr>
+	<% for(var i=0; i<(nPDFs+nFill); i++){ %>
+	<% if(i < nPDFs) { %>
+	<div class="small-2 columns text-center">
+		<a href='/managedocuments/display?uuid=<%= PDFs[i].uuid %>'> <%= 'Document'+(i+1) %> </a>
+		<p> </p>
+		<form action="/managedocuments/delete">
+			<input type="hidden" name="uuid" value="<%= PDFs[i].uuid %>">
+			<input type="submit" value="DELETE" class="button.tiny">
+		</form>
+		<% }else{ %>
+		<div class="small-2 columns text-center">
+			&nbsp;
+			<% } %>
+		</div>
+		<% if(((i+1)%6 == 0) && ((i+1) < nPDFs)) { %>
+	</div>
+	<div class="row">
+		<hr>
+		<% } %>
+		<% } %>
+		<hr>
+	</div>
+
+	<% } %>
+
+	<div class="row text-center">
+		<a href="/createdocument" class="button">Create New Document</a>
+	</div>
+</div>
+
+<script>
+	$("#header ul").append('<li><a href="/managedocuments">Document Management</a></li>');
+</script>
+
+<% include footer %>

@@ -1,0 +1,48 @@
+<% include header %>
+
+<style type="text/css">
+	textarea {
+		resize: none;
+	}
+</style>
+
+<div class="row" align="center">
+	<h3>Document Verification</h3>
+	<hr>
+	<form action="/verifydocument/sendmail" method="post">
+		<div class="small-8 columns">
+			<label> &nbsp; </label>
+			<div align="justify">
+				Please give us your email your e-mail so that we can send you an unique URL that will provide you access
+				to the document verification page. 
+			</div>
+		</div>
+		<div class="small-3 columns">
+			<label>email</label>
+			<input name="email" type="text"/>
+		</div>
+		<div class="small-1 columns">
+			<label> &nbsp; </label>
+			<input type="submit" class="button tiny" value="Submit"/>
+		</div>
+	</form>
+</div>
+
+<% if(key == 'success'){ %>
+<div class="row" align="center">
+	<h5>email Successfully sent!</h5>
+</div>
+<% } %>
+<% if(key == 'failure'){ %>
+<div class="row" align="center">
+	<h5>There was a problem, the email could not be sent</h5>
+</div>
+<% } %>
+
+<script>
+
+	$("#header ul").append('<li><a href="/verifydocument">Document Verification</a></li>');
+
+</script>
+
+<% include footer %>

@@ -1,0 +1,15 @@
+/socket-binding-group=standard-sockets/socket-binding=httpspriv:add(port="8443",interface="httpspriv")
+/subsystem=web/connector=httpspriv:add(protocol=HTTP/1.1, scheme=https, socket-binding=httpspriv, secure=true)
+/subsystem=web/connector=httpspriv/ssl=configuration:write-attribute(name=key-alias, value="signserver")
+/subsystem=web/connector=httpspriv/ssl=configuration:write-attribute(name=password, value="signserver")
+/subsystem=web/connector=httpspriv/ssl=configuration:write-attribute(name=certificate-key-file, value="/opt/jboss7/standalone/configuration/keystore/signserver.jks")
+/subsystem=web/connector=httpspriv/ssl=configuration:write-attribute(name=verify-client, value=true)
+/subsystem=web/connector=httpspriv/ssl=configuration:write-attribute(name=ca-certificate-password, value="signserver")
+/subsystem=web/connector=httpspriv/ssl=configuration:write-attribute(name=ca-certificate-file, value="/opt/jboss7/standalone/configuration/keystore/signserver-truststore.jks")
+
+/socket-binding-group=standard-sockets/socket-binding=httpspub:add(port="8442",interface="httpspub")
+/subsystem=web/connector=httpspub:add(protocol=HTTP/1.1, scheme=https, socket-binding=httpspub, secure=true)
+/subsystem=web/connector=httpspub/ssl=configuration:write-attribute(name=key-alias, value="signserver")
+/subsystem=web/connector=httpspub/ssl=configuration:write-attribute(name=password, value="signserver")
+/subsystem=web/connector=httpspub/ssl=configuration:write-attribute(name=certificate-key-file, value="/opt/jboss7/standalone/configuration/keystore/signserver.jks")
+:reload

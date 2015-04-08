@@ -1,0 +1,4 @@
+/interfaces=/interface=http:add(inet-address="0.0.0.0")
+/interfaces=/interface=httpspub:add(inet-address="0.0.0.0")
+/interfaces=/interface=httpspriv:add(inet-address="0.0.0.0")
+:reload

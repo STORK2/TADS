@@ -1,0 +1,33 @@
+{
+	"name": "tads",
+	"version": "2.0.0",
+	"description": "Trusted Attribute Display Service",
+	"private": true,
+	"scripts": {
+		"start": "node tads.js",
+		"signserver_install": "bash scripts/signserver_install.sh",
+		"signserver_config": "bash scripts/signserver_config.sh",
+		"tadsutils_compile": "bash scripts/tadsutils_compile.sh" 
+	},
+	"dependencies": {
+		"express": "*",
+		"ejs": "*",
+		"pdfkit": "*",
+		"pdfmake": "*",
+		"qr-image" : "*",
+		"node-uuid" : "*",
+		"moment-timezone": "*",
+		"mongoose": "*",
+		"mkdirp": "*",
+		"java": "*",
+		"xmldoc": "*",
+		"properties": "*",
+		"winston": "*",
+		"nodemailer": "*",
+		"nodemailer-smtp-transport": "*",
+		"body-parser": "*",
+		"cookie-parser": "*",
+		"express-session": "*",
+		"restler": "*"
+	}
+}

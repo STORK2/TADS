@@ -1,0 +1,29 @@
+<% include header %>
+
+<div class="row">
+	<form action="/managedocumentsauth/samlreq" method="post">
+		<div class="row">
+			<div class="small-4 columns">
+				<h4>Select Your Country of Origin:</h4>
+			</div>
+			<div class="small-4 columns">
+				<select name="citizenCC">
+					<% for(var cc in countryCodes){ %>
+					<option value="<%= cc %>"> <%= countryCodes[cc] %> </option>
+					<% } %>
+				</select>
+			</div>
+			<div class="small-4 columns"></div>
+		</div>
+		<div class="row text-center">
+			<hr>
+			<input type="submit" class="button large" value="Submit Request">
+		</div>
+	</form>
+</div>
+
+<% include footer %>
+
+
+
+

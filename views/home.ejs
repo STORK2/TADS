@@ -1,0 +1,22 @@
+	<% include header %>
+
+
+	<div class="row" align="center">
+		<div class="small-12 large-centered columns">
+			<p class="text-left">This service is provided to you in accordance with the terms of the STORK 2.0 Memorandum of Understanding. Security and quality assurance measures which we deem to be appropriate have been implemented in accordance with the Memorandum. Please note however that the Memorandum excludes any assurances or liabilities for the availability trustworthiness or accuracy of the identity information provided via its infrastructure. You should assess and decide for yourself whether these terms are acceptable for your individual use case.</p>
+		</div>
+	</div>
+	<div class="row" align="center">
+		<div class="small-12 large-centered columns">
+			<a href="/createdocument" class="button radius">Create Documents</a>
+			<a href="/managedocuments" class="button radius">Manage Documents</a>
+			<a href="/verifydocument" class="button radius">Verify Documents</a>
+		</div>
+		<% if(process.env.NODE_ENV === 'development'){ %>
+			<div class="row" align="center">
+				<a href="/createdocfromfile" class="button radius" id="CreateDocFromFile">Create Doc From File</a>			
+			</div>	
+		<% } %>
+  	</div>
+
+  	<% include footer %>

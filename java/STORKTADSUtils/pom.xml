@@ -1,0 +1,154 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>eu.stork</groupId>
+	<artifactId>STORKTADSUtils</artifactId>
+	<packaging>jar</packaging>
+	<name>STORKTADSUtils</name>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<saml.version>1.1.0</saml.version>
+		<samlspec.version>0.5.2</samlspec.version>
+		<samlspecacept.version>0.5.1</samlspecacept.version>
+		<commons.version>1.4.2</commons.version>
+		<opensaml.version>2.6.0</opensaml.version>
+		<stork-saml.version>1.4.2</stork-saml.version>
+		<slf4jVersion>1.6.1</slf4jVersion>
+		<timestamp>${maven.build.timestamp}</timestamp>
+	</properties>
+	<version>${commons.version}</version>
+
+	<repositories>
+		<repository>
+			<id>org.opensaml</id>
+			<url>https://build.shibboleth.net/nexus/content/repositories/releases</url>
+		</repository>
+		<!-- repository OpenSaml -->
+		<repository>
+			<id>shibboleth-release</id>
+			<name>Internet2 Releases</name>
+			<layout>default</layout>
+			<url>https://build.shibboleth.net/nexus/content/repositories/releases</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<!-- Compile dependencies -->
+		<dependency>
+			<groupId>eu.stork</groupId>
+			<artifactId>Commons</artifactId>
+			<version>${commons.version}</version>
+		</dependency>
+
+		<!-- Stork SAML Engine -->
+		<dependency>
+			<groupId>eu.stork</groupId>
+			<artifactId>SamlEngine</artifactId>
+			<version>${stork-saml.version}</version>
+			<scope>compile</scope>
+			<exclusions>
+
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>jul-to-slf4j</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>log4j-over-slf4j</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>xalan</groupId>
+					<artifactId>serializer</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>xalan</groupId>
+					<artifactId>xalan</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>xerces</groupId>
+					<artifactId>xercesImpl</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>xml-resolver</groupId>
+					<artifactId>xml-resolver</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>xml-apis</groupId>
+					<artifactId>xml-apis</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- STORK SAML Engine -->
+
+		<dependency>
+			<groupId>xml-apis</groupId>
+			<artifactId>xml-apis</artifactId>
+			<version>1.4.01</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.2</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- DiplomaSupplementUtils -->
+
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20131018</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.3.2</version>
+					<configuration>
+						<source>1.6</source>
+						<target>1.6</target>
+					</configuration>
+				</plugin>
+
+			</plugins>
+		</pluginManagement>
+		<plugins>
+
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<finalName>STORKTADSUtils-${version}</finalName>
+					<appendAssemblyId>false</appendAssemblyId>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<reporting>
+	</reporting>
+</project>
