@@ -6,12 +6,19 @@ To deploy TADS, please follow the instructions provided below.
 
 I highly recommend using a unix/linux system, as I provide a bash script to deploy
 signserver. I have tested deployment on Windows, but I might not be able to give
-proper support if needed. 
+proper support if needed.
 
 
 =============================================================
 Setup
 =============================================================
+
+* Node.js
+
+TADS 2.0.0 was tested and deployed on Node version 0.12.1. If you already have 
+node installed, you can upgrade it using the n package from npm: https://www.npmjs.com/package/n .
+
+Node
 
 * SAMLEngine
 
@@ -86,7 +93,7 @@ Deployment
  Software Requirements:
 
   Common:
-    Nodejs (http://www.nodejs.org);
+    Nodejs 0.12.1 (http://www.nodejs.org);
     mongodb (http://www.mongodb.org);
     Python 2.x (2.7 recommended);
     Oracle Java JDK (or open-JDK) 1.6 or higher.
