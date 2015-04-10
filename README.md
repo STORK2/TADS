@@ -13,12 +13,13 @@ proper support if needed.
 Setup
 =============================================================
 
+
 * Node.js
 
 TADS 2.0.0 was tested and deployed on Node version 0.12.1. If you already have 
-node installed, you can upgrade it using the n package from npm: https://www.npmjs.com/package/n .
+node installed, you can upgrade it using the n package from npm: 
+https://www.npmjs.com/package/n .
 
-Node
 
 * SAMLEngine
 
@@ -49,6 +50,11 @@ the attributes that can be requested in the friendly name form and respective
 supported by the STORKSAMLEngine (this is configurable in the file 
 "java/STORKTADSUtils/src/main/resources/StorkSamlEngine_SP.xml) otherwise the 
 wrapping API will thrown an exception upon execution.
+
+The browser cookies that store the session id are signed using a secret provided in
+the [tads] section of the tads.properties file. Please change this secret key with
+a string of your choosing. You can use the command "openssl rand -base64 32" to
+generate a random string
 
 To deploy TADS with HTTPS using your own keys and cert please put them in the keys/
 folder and configure the paths in the tads.properties file. The cert and key must be 

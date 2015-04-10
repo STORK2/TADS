@@ -5,7 +5,6 @@ var fs = require('fs');
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var http = require('http');
 var https = require('https');
@@ -45,14 +44,21 @@ Configs.getConfigs(function(err, confs){
 	app.use(bodyParser.urlencoded({
 		extended: true
 	}));
-	app.use(cookieParser('QaP39myS9QacReAGwXconVGtWys='));
-	app.use(session(
-	{
-		secret: 'QaP39myS9QacReAGwXconVGtWys=', 
-		resave: true,
-		saveUninitialized: true
+	
+	var sessionOptions = {
+		secret: configs.tads.secret,
+		resave: false,
+		saveUninitialized: false,
+		cookie: { secure: true }
 	}
-	));
+
+	if(configs.proxy.reverseProxy === true){
+		app.set('trust proxy', 1);
+		sessionOptions['proxy'] = true;
+	}
+
+	app.use(session(sessionOptions));
+	
 	app.use(express.static(path.join(__dirname, 'public')));
 	var httpRedirection = confs.https.httpRedirection;
 	if(protocol === 'https:' && httpRedirection === true){

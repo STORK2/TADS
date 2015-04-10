@@ -26,7 +26,6 @@
 		"nodemailer": "*",
 		"nodemailer-smtp-transport": "*",
 		"body-parser": "*",
-		"cookie-parser": "*",
 		"express-session": "*",
 		"restler": "*"
 	}
