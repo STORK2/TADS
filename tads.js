@@ -50,7 +50,11 @@ Configs.getConfigs(function(err, confs){
 		secret: configs.tads.secret,
 		resave: false,
 		saveUninitialized: false,
-		cookie: { secure: true }
+		cookie: { secure: false }
+	}
+
+	if(protocol === 'https:'){
+		sessionOptions.cookie.secure = true;
 	}
 
 	if(configs.proxy.reverseProxy === true){

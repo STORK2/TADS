@@ -33,7 +33,6 @@ exports.manageDocuments = function(req, res){
 	}
 }
 
-
 exports.SAMLAuthReq = function(req, res){
 	var queryString = req.body;
 	var targetPEPS = configs.peps.url;

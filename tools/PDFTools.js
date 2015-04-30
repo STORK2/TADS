@@ -522,7 +522,7 @@ exports.signPDF = function(userId, PDFuuid, callback){
 				console.error('There was a problem contacting SignServer');
 				console.error('Please check that SignServer is running and the endpoint in tads.properties is well configured.');
 				throw data;
-			}else if(res.statusCode === '200'){
+			}else if(res.statusCode === 200){
 				fs.writeFileSync(pdfPath, res.raw);
 				return callback(null);
 			}else{

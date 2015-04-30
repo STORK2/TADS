@@ -49,7 +49,6 @@ function getSAMLEndpointForPath(returnPath){
 		url = 'https://'+configs.tads.parsedURL.host+'/'+returnPath;
 	}
 
-	console.log(url);
 	return url;
 }
 
