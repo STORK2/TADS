@@ -31,18 +31,7 @@ exports.SAMLReq = function(req, res){
 	var targetPEPS = configs.peps.url;
 	var citizenCC = queryString.citizenCC;
 	var pepsURL = configs.peps.url;
-	var returnURL;
-	var parsedURL = url.parse(configs.tads.url);
-	
-	if(configs.proxy.reverseProxy === true){
-		if(configs.tads.protocol === 'https:'){
-			returnURL = 'https://'+parsedURL.hostname+'/'+returnPath;
-		}else{
-			returnURL = parsedURL.protocol+'//'+parsedURL.hostname+'/'+returnPath;
-		}
-	}else{
-		returnURL = parsedURL.href+returnPath;
-	}
+	var returnURL = configs.peps.createSAMLEndpoint;
 	
 	//Sanitize attributes in queryString
 	delete queryString.citizenCC;

@@ -9,6 +9,7 @@ var session = require('express-session');
 var http = require('http');
 var https = require('https');
 var url = require('url');
+var helmet = require('helmet');
 var app = express();
 
 var Configs = require('./utils/Configs');
@@ -70,6 +71,10 @@ Configs.getConfigs(function(err, confs){
 			next();
 		});
 	}
+
+	//HSTS Setup
+	var ninetyDaysInMilliseconds = 7776000000;
+	app.use(helmet.hsts({ maxAge: ninetyDaysInMilliseconds }));
 	
 	//Index Page
 	app.get('/', function(req, res, next){
@@ -159,12 +164,14 @@ Configs.getConfigs(function(err, confs){
 			http.createServer(app).listen(80);
 			console.log('Server started with http protocol on port: 80');
 		}
+		
 		var HTTPSopts = {
 			key: fs.readFileSync(configs.https.privKeyPath),
 			cert: fs.readFileSync(configs.https.certPath)
 		};
 		https.createServer(HTTPSopts, app).listen(sslPort);
 		console.log('Server started with https protocol on port: '+sslPort);
+	
 	}else if(protocol === 'http:'){
 		http.createServer(app).listen(listeningPort);
 		console.log('Server started with http protocol on port: '+listeningPort);

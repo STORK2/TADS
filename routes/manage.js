@@ -39,22 +39,13 @@ exports.SAMLAuthReq = function(req, res){
 	var targetPEPS = configs.peps.url;
 	var pepsURL = configs.peps.url;
 	var citizenCC = configs.peps.cc;
+	var returnURL = configs.peps.manageSAMLEndpoint;
 	var attrList = {};
 
 	attrList['eIdentifier'] = true;
 
-	var returnURL;
-	var parsedURL = url.parse(configs.tads.url);
-	if(configs.proxy.reverseProxy === true){
-		if(configs.tads.protocol === 'https:'){
-			returnURL = 'https://'+parsedURL.hostname+'/'+returnPath;
-		}else{
-			returnURL = parsedURL.protocol+'//'+parsedURL.hostname+'/'+returnPath;
-		}
-	}else{
-		returnURL = parsedURL.href+returnPath;
-	}
-
+	
+	
 	samlAttrs = {
 		pepsURL : pepsURL,
 		qaa : '3',
