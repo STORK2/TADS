@@ -32,23 +32,20 @@ exports.getConfigs = function(callback){
 
 		return callback(null, confs);
 
-  	});
+  });
 }
 
 function getSAMLEndpointForPath(returnPath){
 
 	var url;
-	if(configs.proxy.reverseProxy === true){
-		proxyPort = configs.proxy.listeningPort;
-		if(proxyPort === 80){
-			url = 'https://'+configs.tads.parsedURL.hostname+'/'+returnPath;
-		}else{
-			url = 'https://'+configs.tads.parsedURL.hostname+':'+proxyPort+'/'+returnPath;
-		}
-	}else{
-		url = 'https://'+configs.tads.parsedURL.host+'/'+returnPath;
-	}
-
-	return url;
+	var returnUrl = configs.tads.samlReturnUrl;
+    
+  if(returnUrl.slice(-1) === '/'){
+    url = returnUrl + returnPath;
+  }else{
+    url = returnUrl + '/' + returnPath;
+  }
+  console.log(url);
+  return url;
 }
 
