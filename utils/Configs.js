@@ -32,7 +32,7 @@ exports.getConfigs = function(callback){
 
 		return callback(null, confs);
 
-  });
+	});
 }
 
 function getSAMLEndpointForPath(returnPath){
@@ -40,12 +40,12 @@ function getSAMLEndpointForPath(returnPath){
 	var url;
 	var returnUrl = configs.tads.samlReturnUrl;
     
-  if(returnUrl.slice(-1) === '/'){
-    url = returnUrl + returnPath;
-  }else{
-    url = returnUrl + '/' + returnPath;
-  }
+	if(returnUrl.slice(-1) === '/'){
+		url = returnUrl + returnPath;
+	}else{
+		url = returnUrl + '/' + returnPath;
+	}
   
-  return url;
+	return url;
 }
 

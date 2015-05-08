@@ -45,7 +45,7 @@ but mind that this is a fundamental step to put TADS into production.
 
 Most of the configurations of TADS are set in the file resources/tads.properties.
 There, you can set the identifier of your TADS server, set your PEPS url and configure 
-the attributes that can be requested in the friendly name form and respective 
+the attributes that can be requested in the friendly name format and respective 
 "translation" to be displayed to the user. The attributes need to match the ones
 supported by the STORKSAMLEngine (this is configurable in the file 
 "java/STORKTADSUtils/src/main/resources/StorkSamlEngine_SP.xml) otherwise the 
@@ -56,11 +56,15 @@ the [tads] section of the tads.properties file. Please change this secret key wi
 a string of your choosing. You can use the command "openssl rand -base64 32" to
 generate a random string
 
+The url configuration in the tads.properties file sets the protocol and port where
+the TADS server will be listening. If you are behind a reverse proxy that serves 
+HTTPS, set the option reverseProxy to true and set the samlReturnUrl in the tads.properties 
+accordingly to the protocol and port the proxy is listening on.
+
 To deploy TADS with HTTPS using your own keys and cert please put them in the keys/
 folder and configure the paths in the tads.properties file. The cert and key must be 
 in .pem format.
-If you are behind a reverse proxy that serves HTTPS, set the option reverseProxy to
-true.
+
 NOTE: The provided certificate and key are self signed and for testing only.
 Once you set up the keys, change the protocol in the url in tads.properties 
 ([tads] section). You can also change the port there, if none is specified, port
