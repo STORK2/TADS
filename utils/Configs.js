@@ -45,7 +45,7 @@ function getSAMLEndpointForPath(returnPath){
   }else{
     url = returnUrl + '/' + returnPath;
   }
-  console.log(url);
+  
   return url;
 }
 
