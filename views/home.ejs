@@ -1,22 +1,62 @@
 	<% include header %>
 
+	<div class="row">
 
-	<div class="row" align="center">
-		<div class="small-12 large-centered columns">
-			<p class="text-left">This service is provided to you in accordance with the terms of the STORK 2.0 Memorandum of Understanding. Security and quality assurance measures which we deem to be appropriate have been implemented in accordance with the Memorandum. Please note however that the Memorandum excludes any assurances or liabilities for the availability trustworthiness or accuracy of the identity information provided via its infrastructure. You should assess and decide for yourself whether these terms are acceptable for your individual use case.</p>
+		<div class="col-sm-8">
+			<div class="jumbotron">
+				<h3>Welcome!</h3>
+				<p>This the Trusted Attribute Display Service. Here you can create certified documents with attributes you retrieve from the STORK infrastructure by authenticating with your national eID card or credentials.</p>
+			</div>
+		</div>
+
+
+		<div class="col-sm-4">
+			<div class="panel panel-default">	
+				<div class="panel-heading text-left"><h4>Services:</h4></div>
+				<div class="panel-body text-center">
+				
+					<a href="/createdocument" type="button" class="btn btn-default service-btn btn-lg">Create Documents</a>
+					<a href="/managedocuments" type="button" class="btn btn-default service-btn btn-lg">Manage Documents</a>
+					<a href="/verifydocument" type="button" class="btn btn-default service-btn btn-lg">Verify Documents</a>
+					
+					<% if(process.env.NODE_ENV === 'development'){ %>
+					
+						<a href="/createdocfromfile" class="btn btn-default service-btn btn-lg">Create Doc From File</a>
+					
+					<% } %>
+				</div>
+			</div>
 		</div>
 	</div>
-	<div class="row" align="center">
-		<div class="small-12 large-centered columns">
-			<a href="/createdocument" class="button radius">Create Documents</a>
-			<a href="/managedocuments" class="button radius">Manage Documents</a>
-			<a href="/verifydocument" class="button radius">Verify Documents</a>
-		</div>
-		<% if(process.env.NODE_ENV === 'development'){ %>
-			<div class="row" align="center">
-				<a href="/createdocfromfile" class="button radius" id="CreateDocFromFile">Create Doc From File</a>			
-			</div>	
-		<% } %>
-  	</div>
 
-  	<% include footer %>
+	<div class="row">
+		
+		<div class="col-sm-4">
+			<h4>Create Document</h4>
+			<p>Create a new digitally signed certified document in PDF format.</p>
+		</div>
+		
+		<div class="col-sm-4">
+			<h4>Manage Documents</h4>
+			<p>Manage the documents you have previously created.</p>
+		</div>
+
+		<div class="col-sm-4">
+			<h4>Verify Document</h4>
+			<p>Retrieve the digital, certified document from a printed copy.</p>
+		</div>
+
+	</div>
+
+	<div class="row">
+		<div class="col-sm-12 disclaimer">
+			
+			<h5>Disclaimer</h5>
+			<p>This service is provided to you in accordance with the terms of the STORK 2.0 Memorandum of Understanding. Security and quality assurance measures which we deem to be appropriate have been implemented in accordance with the Memorandum. Please note however that the Memorandum excludes any assurances or liabilities for the availability trustworthiness or accuracy of the identity information provided via its infrastructure. You should assess and decide for yourself whether these terms are acceptable for your individual use case.</p>
+			
+		</div>
+	</div>
+
+
+
+	<% include footer %>

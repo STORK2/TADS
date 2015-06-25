@@ -1,39 +1,65 @@
 <% include header %>
 
-<div class='row' align="center">
+<div class='row'>
+	<div class="col-sm-12">
+		<div class="jumbotron text-left" style="margin-bottom: 20px;">
+			<h3>Document QRCode Scanner</h3>
+			<p>Please grant us access to the webcam so we can scan the document QRCode.</p>
+		</div>
+	</div>
+</div>
 
-	<h1>Document QRCode Scanner</h1>
-	<hr>
-	<p>Please position the document QR Code in front of your webcam</p>
-	<video  id="camsource" autoplay width="320" height="240">Put your fallback message here.</video>
-	<canvas id="qr-canvas" width="320" height="240" style="display:none"></canvas>
+
+	<div class="panel panel-default">	
+				
+		<div class="panel-heading text-center"><h5>Please position the document QR Code in front of your webcam</h5></div>
+		<div class="panel-body text-center">
 
 	<div class="row" align="center">
 		<h3 id="qr-value"> </h3>    
 	</div>
+	
+	<video  id="camsource" autoplay width="320" height="240">Put your fallback message here.</video>
+	<canvas id="qr-canvas" width="320" height="240" style="display:none"></canvas>
 
+	</div>
+	</div>
+
+	<div class="panel panel-default">	
+				
+		<div class="panel-heading text-center"><h5>Manual Document retrieval</h5></div>
+		<div class="panel-body">
+	
 	<div class="row">
 		<form action="/verifydocument/getpdf" method="POST">
-			<div class="small-7 columns">
-				<div align="justify">
-					<label> &nbsp; </label>
+			<div class="col-sm-6">
+				<p style="margin-bottom: 0; margin-top:6px;">
 					If you are unwilling or unable to use your webcam, please insert the 
-					code below the QR-Code in the text box.
-				</div>
+					code here:
+				</p>
 			</div>
-			<div class="small-4 columns">
-				<label>Code</label>
-				<input name="uuid" type="text"/>
+			<div class="col-sm-5">
+
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1">QRCode</span>
+				<input name="uuid" type="text" class="form-control" placeholder="TADS-PT-f4934370-fef2-11e4-a72e-b3143cfec6d6" aria-describedby="basic-addon1">
 			</div>
-			<div class="small-1 columns">
-				<label> &nbsp; </label>
-				<input type="submit" class="button tiny" value="Submit"/>
+
+			</div>
+			<div class="col-sm-1">
+				<input type="submit" class="btn btn-default attr-btn" style="margin-bottom: 0; height: auto;" value="Submit"/>
 			</div>
 		</form>
 	</div>
+
+	</div>
+	</div>
+
+
+	</div>
 </div>
 
-<script type="text/javascript" src="/javascripts/jquery-1.7.2.min.js"></script>
+
 <script type="text/javascript" src="/jsqrcode-master/src/grid.js"></script>
 <script type="text/javascript" src="/jsqrcode-master/src/version.js"></script>
 <script type="text/javascript" src="/jsqrcode-master/src/detector.js"></script>
@@ -56,7 +82,7 @@
 <script type="text/javascript" src="/javascripts/init.js"></script>
 
 <script>
-	$("#header ul").append('<li><a href="/verifydocument/getpdf">Verify Document</a></li>');
+	$("#breadcrumb").append('<li><a href="/verifydocument/getpdf">Verify Document</a></li>');
 </script>
 
 <script>

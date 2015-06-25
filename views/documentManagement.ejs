@@ -1,65 +1,111 @@
-<% include header %>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/custom.css">
+	<!--<link rel="stylesheet" href="/stylesheets/foundation.css">
+	<script src="/javascripts/modernizr.js"></script>
+	<script src="/javascripts/foundation.js"></script> -->
+	<script src="/javascripts/jquery-1.11.3.min.js"></script>
+	<script src="/javascripts/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<div class="site-wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 text-center">
+					<a class="header-brand" href="/"><h2>Trusted Attribute Display Service</h2></a>
+				</div>
+				<div class="col-sm-6 text-center">
+					<img class="header-img" href="https://www.eid-stork2.eu/" src="/images/logo.jpg" alt="STORK Logo"/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-9">
+					<ol id="breadcrumb" class="breadcrumb">
+						<li><a href="/">Home</a></li>
+					</ol>
+				</div>
+
+				<div class="col-sm-3">
+					<input href="/logout" class="btn btn-default attr-btn" style="height: auto; margin-bottom: 0;" value="Logout"/>
+				</div>
+			</div>
+		
+
 <div class="row">
-	<div class="small-12 columns text-right">
-		<a href="/logout">Logout</a>
-	</div>
-</div>
-<div class="row">
-	<div class="small-12 columns text-center">
-		<h3>Document Management</h3>
+	<div class="col-sm-12">
+		<div class="jumbotron text-left" style="margin-bottom: 20px;">
+			<h3>Document Management</h3>
+			<p>Here you can see all your created documents and delete them.</p>
+		</div>
 	</div>
 </div>
 
 
 <% if(nPDFs == 0){ %>
 
+<div class="panel panel-default">	
+<div class="panel-heading text-center"><h4>Your Documents</h4></div>
+
 <div class="row">
-	<hr>
-	<div class="small-12 columns text-center">
-		<h5>You have no documents yet</h5>
-		<p></p>
+	<div class="col-sm-12 text-center">
+		<h5>You have no documents yet. Create one by pressing the button below.</h5>
 	</div>
-	<hr>
+</div>
 </div>
 
 <% }else{ %> 
 
 <% var nFill = nPDFs - Math.floor(nPDFs/6)*6 %>
 
-<div class="row">
-	<hr>
-	<% for(var i=0; i<(nPDFs+nFill); i++){ %>
-	<% if(i < nPDFs) { %>
-	<div class="small-2 columns text-center">
-		<a href='/managedocuments/display?uuid=<%= PDFs[i].uuid %>'> <%= 'Document'+(i+1) %> </a>
-		<p> </p>
-		<form action="/managedocuments/delete">
-			<input type="hidden" name="uuid" value="<%= PDFs[i].uuid %>">
-			<input type="submit" value="DELETE" class="button.tiny">
-		</form>
-		<% }else{ %>
-		<div class="small-2 columns text-center">
-			&nbsp;
+<div class="panel panel-default">	
+				
+<div class="panel-heading text-center"><h4>Your Documents</h4></div>
+<div class="panel-body text-center">
+				
+	<div class="row">
+		
+		<% for(var i=0; i<(nPDFs+nFill); i++){ %>
+		<% if(i < nPDFs) { %>
+		<div class="col-sm-2 text-center">
+			<a href='/managedocuments/display?uuid=<%= PDFs[i].uuid %>'> <%= 'Document'+(i+1) %> </a>
+
+			<form style="padding-top:10px" action="/managedocuments/delete">
+				<input type="hidden" name="uuid" value="<%= PDFs[i].uuid %>">
+				<input type="submit" value="DELETE" class="btn btn-sm">
+			</form>
+			<% }else{ %>
+			<div class="col-sm-2 text-center">
+				&nbsp;
+				<% } %>
+			</div>
+			<% if(((i+1)%6 == 0) && ((i+1) < nPDFs)) { %>
+		</div>
+		<div class="row">
+			<hr>
+			<% } %>
 			<% } %>
 		</div>
-		<% if(((i+1)%6 == 0) && ((i+1) < nPDFs)) { %>
-	</div>
-	<div class="row">
-		<hr>
-		<% } %>
-		<% } %>
-		<hr>
-	</div>
 
-	<% } %>
+		<% } %>
 
-	<div class="row text-center">
-		<a href="/createdocument" class="button">Create New Document</a>
 	</div>
 </div>
 
+
+<div class="row">
+	<div class="col-sm-12 text-center">
+	<a href="/createdocument" class="attr-btn btn btn-lg">Create New Document</a>
+	</div>
+</div>
+
+
 <script>
-	$("#header ul").append('<li><a href="/managedocuments">Document Management</a></li>');
+	$("#breadcrumb").append('<li><a href="/managedocuments">Document Management</a></li>');
 </script>
 
 <% include footer %>

@@ -1,168 +1,182 @@
 <% include header %>
 
+
 <div class="row text-center">
-	<h5>Please select the attributes to request.</h5>
+	<p>Select the certified attributes that you wish to retrieve and display on your PDF document.</p>
 </div>
 
-<div class="row">
-	<form action="/createdocument/samlreq" method="post">
-		<div class="row">
-			<div class="small-12 text-left">
-				<hr>
-				<h3>Your Country of Origin</h3>
-			</div>
-		</div>
-		<div class="row">
-			<div class="small-4 columns">&nbsp;</div>
-			<div class="small-4 columns">
-				<select name="citizenCC">
-					<% for(var cc in countryCodes){ %>
-					<option value="<%= cc %>"> <%= countryCodes[cc] %> </option>
-					<% } %>
-				</select>
-			</div>
-			<div class="small-4 columns"></div>
-			<hr>
-		</div>
-
-		<div class="row text-left">
-			<h3>Personal Attributes</h3>
-		</div>
-		<div class="row">
-			<div class="small-3 small-offset-2 columns">
-				&nbsp;
-			</div>
-			<div class="small-2 text-center columns">
-				<input type="radio" name="personalAttributes" value="req" onclick="selectAll(&apos;personal&apos;, &apos;req&apos;)"><label for="personalAttributes">Request</label>
-			</div>
-			<div class="small-2 text-center columns">
-				<input type="radio" name="personalAttributes" value="opt" onclick="selectAll(&apos;personal&apos;, &apos;opt&apos;)" checked="checked"><label for="personalAttributes">Optional</label>
-			</div>
-			<div class="small-2 text-center columns">
-				<input type="radio" name="personalAttributes" value="not" onclick="selectAll(&apos;personal&apos;, &apos;not&apos;)"><label for="personalAttributes">Do not request</label>
-			</div>
-			<div class="small-1 columns"></div>
-			<hr>
-		</div>
-
-		<% var nPersonal = 0;%>
-		<% for(var attr in personalAttributes){ %>
-		<% if(attr == 'eIdentifier') continue;%>
-		<% nPersonal++; %>
-
-		<div class="row">
-			<div class="small-3 small-offset-2 columns">
-				<%= personalAttributes[attr] %>
-			</div>
-			<div class="small-2 text-center columns">
-				<input id="<%= 'personal'+nPersonal+'req'%>" type="radio" name="<%= attr %>" value="req"><label for="<%= attr %>">Request</label>
-			</div>
-			<div class="small-2 text-center columns">
-				<input id="<%= 'personal'+nPersonal+'opt'%>" type="radio" name="<%= attr %>" value="opt" checked="checked"><label for="<%= attr %>">Optional</label>
-			</div>
-			<div class="small-2 text-center columns">
-				<input id="<%= 'personal'+nPersonal+'not'%>" type="radio" name="<%= attr %>" value="not"><label for="<%= attr %>">Do not request</label>
-			</div>
-			<div class="small-1 columns"></div>
-		</div>
-
-		<% } %>
-
-		<div class="row text-left">
-			<hr>
-			<h3>Academia Attributes</h3>
-		</div>
-		<div class="row">
-			<div class="small-3 small-offset-2 columns">
-				&nbsp;
-			</div>
-			<div class="small-2 text-center columns">
-				<input type="radio" name="academiaAttributes" value="req" onclick="selectAll(&apos;academia&apos;, &apos;req&apos;)"><label for="academiaAttributes">Request</label>
-			</div>
-			<div class="small-2 text-center columns">
-				<input type="radio" name="academiaAttributes" value="opt" onclick="selectAll(&apos;academia&apos;, &apos;opt&apos;)" checked="checked"><label for="academiaAttributes">Optional</label>
-			</div>
-			<div class="small-2 text-center columns">
-				<input type="radio" name="academiaAttributes" value="not" onclick="selectAll(&apos;academia&apos;, &apos;not&apos;)"><label for="academiaAttributes">Do not request</label>
-			</div>
-			<div class="small-1 columns"></div>
-			<hr>
-		</div>
-
-		<% var nAcademia = 0;%>
-		<% for(var attr in academiaAttributes){ %>
-		<% nAcademia++; %>
-
-		<div class="row">
-			<div class="small-3 small-offset-2 columns">
-				<%= academiaAttributes[attr] %>
-			</div>
-			<div class="small-2 text-center columns">
-				<input id="<%= 'academia'+nAcademia+'req'%>" type="radio" name="<%= attr %>" value="req"><label for="<%= attr %>">Request</label>
-			</div>
-			<div class="small-2 text-center columns">
-				<input id="<%= 'academia'+nAcademia+'opt'%>" type="radio" name="<%= attr %>" value="opt" checked="checked"><label for="<%= attr %>">Optional</label>
-			</div>
-			<div class="small-2 text-center columns">
-				<input id="<%= 'academia'+nAcademia+'not'%>" type="radio" name="<%= attr %>" value="not"><label for="<%= attr %>">Do not request</label>
-			</div>
-			<div class="small-1 columns"></div>
-		</div>
-
-		<% } %>
-
-		<div class="row text-left">
-			<hr>
-			<h3>Legal Attributes</h3>
-		</div>
-		<div class="row">
-			<div class="small-3 small-offset-2 columns">
-				&nbsp;
-			</div>
-			<div class="small-2 text-center columns">
-				<input type="radio" name="legalAttributes" value="req" onclick="selectAll(&apos;legal&apos;, &apos;req&apos;)"><label for="legalAttributes">Request</label>
-			</div>
-			<div class="small-2 text-center columns">
-				<input type="radio" name="legalAttributes" value="opt" onclick="selectAll(&apos;legal&apos;, &apos;opt&apos;)" checked="checked"><label for="legalAttributes">Optional</label>
-			</div>
-			<div class="small-2 text-center columns">
-				<input type="radio" name="legalAttributes" value="not" onclick="selectAll(&apos;legal&apos;, &apos;not&apos;)"><label for="legalAttributes">Do not request</label>
-			</div>
-			<div class="small-1 columns"></div>
-			<hr>
-		</div>
-
-		<% var nLegal = 0;%>
-		<% for(var attr in legalAttributes){ %>
-		<% nLegal++; %>
-
-		<div class="row">
-			<div class="small-3 small-offset-2 columns">
-				<%= legalAttributes[attr] %>
-			</div>
-			<div class="small-2 text-center columns">
-				<input id="<%= 'legal'+nLegal+'req'%>" type="radio" name="<%= attr %>" value="req"><label for="<%= attr %>">Request</label>
-			</div>
-			<div class="small-2 text-center columns">
-				<input id="<%= 'legal'+nLegal+'opt'%>" type="radio" name="<%= attr %>" value="opt" checked="checked"><label for="<%= attr %>">Optional</label>
-			</div>
-			<div class="small-2 text-center columns">
-				<input id="<%= 'legal'+nLegal+'not'%>" type="radio" name="<%= attr %>" value="not"><label for="<%= attr %>">Do not request</label>
-			</div>
-			<div class="small-1 columns"></div>
-		</div>
-
-		<% } %>
+<form action="/createdocument/samlreq" method="post">
+	
+	<div class="panel panel-default">
 		
-		<div class="row text-center">
-			<hr>
-			<input type="submit" class="button large" value="Submit Request">
+		<div class="row">
+			<div class="col-sm-4 col-sm-offset-1">
+				<h3>Select your country of origin:</h3>
+			</div>
+
+			<div class="col-sm-4">
+				<div class="form-group">
+					<select class="form-control select-country">
+						<% for(var cc in countryCodes){ %>
+							<option value="<%= cc %>"> <%= countryCodes[cc] %> </option>
+						<% } %>
+					</select>
+				</div>
+			</div>
 		</div>
-	</form> 
-</div>
+	</div>
+
+	<!-- Personal Attributes -->
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-1">
+					<h3>Personal Attributes</h3>
+				</div>
+
+				<div class="col-sm-5 attributes-main-selector">
+					<input type="radio" name="personalAttributes" value="req" onclick="selectAll('personal', 'req')"><label for="personalAttributes">Request</label>
+					<input type="radio" name="personalAttributes" value="opt" onclick="selectAll('personal', 'opt')" checked="checked"><label for="personalAttributes">Optional</label>
+					<input type="radio" name="personalAttributes" value="not" onclick="selectAll('personal', 'not')"><label for="personalAttributes">Do not request</label>
+				</div>
+				<div class="col-sm-2 text-center">
+
+					<button type="button" class="btn btn-default btn-collapse" aria-label="Left Align" data-toggle="collapse" data-target="#personal-attrs">
+  						<span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
+					</button>
+
+				</div>
+			</div>
+
+		</div>
+
+		<div id="personal-attrs" class="row text-center collapse">
+			<div class="col-sm-10 col-sm-offset-1">
+				<table class="table">
+					<tbody>
+					<% var nPersonal = 0;%>
+					<% for(var attr in personalAttributes){ %>
+					<% nPersonal++; %>
+						<tr>
+							<td><p class="attribute-name"><%= personalAttributes[attr] %></p></td>
+							<td>
+								<input id="<%= 'personal'+nPersonal+'req'%>" type="radio" name="<%= attr %>" value="req"><label for="<%= attr %>">Request</label>
+								<input id="<%= 'personal'+nPersonal+'opt'%>" type="radio" name="<%= attr %>" value="opt" checked="checked"><label for="<%= attr %>">Optional</label>
+								<input id="<%= 'personal'+nPersonal+'not'%>" type="radio" name="<%= attr %>" value="not"><label for="<%= attr %>">Do not request</label>
+							</td>
+						</tr>
+					<% } %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	
+	<!-- Academic Attributes -->
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-1">
+					<h3>Academia Attributes</h3>
+				</div>
+
+				<div class="col-sm-5 attributes-main-selector">
+					<input type="radio" name="academiaAttributes" value="req" onclick="selectAll('academia', 'req')"><label for="academiaAttributes">Request</label>
+					<input type="radio" name="academiaAttributes" value="opt" onclick="selectAll('academia', 'opt')" checked="checked"><label for="academiaAttributes">Optional</label>
+					<input type="radio" name="academiaAttributes" value="not" onclick="selectAll('academia', 'not')"><label for="academiaAttributes">Do not request</label>
+				</div>
+				<div class="col-sm-2 text-center">
+
+					<button type="button" class="btn btn-default btn-collapse" aria-label="Left Align" data-toggle="collapse" data-target="#academia-attrs">
+  						<span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
+					</button>
+
+				</div>
+			</div>
+
+		</div>
+
+		<div id="academia-attrs" class="row text-center collapse">
+			<div class="col-sm-10 col-sm-offset-1">
+				<table class="table">
+					<tbody>
+					<% var nAcademia = 0;%>
+					<% for(var attr in academiaAttributes){ %>
+					<% nAcademia++; %>
+						<tr>
+							<td><p class="attribute-name"><%= academiaAttributes[attr] %></p></td>
+							<td>
+								<input id="<%= 'academia'+nAcademia+'req'%>" type="radio" name="<%= attr %>" value="req"><label for="<%= attr %>">Request</label>
+								<input id="<%= 'academia'+nAcademia+'opt'%>" type="radio" name="<%= attr %>" value="opt" checked="checked"><label for="<%= attr %>">Optional</label>
+								<input id="<%= 'academia'+nAcademia+'not'%>" type="radio" name="<%= attr %>" value="not"><label for="<%= attr %>">Do not request</label>
+							</td>
+						</tr>
+					<% } %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<!-- Legal Attributes -->
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-1">
+					<h3>Legal Attributes</h3>
+				</div>
+
+				<div class="col-sm-5 attributes-main-selector">
+					<input type="radio" name="legalAttributes" value="req" onclick="selectAll('legal', 'req')"><label for="legalAttributes">Request</label>
+					<input type="radio" name="legalAttributes" value="opt" onclick="selectAll('legal', 'opt')" checked="checked"><label for="legalAttributes">Optional</label>
+					<input type="radio" name="legalAttributes" value="not" onclick="selectAll('legal', 'not')"><label for="legalAttributes">Do not request</label>
+				</div>
+				<div class="col-sm-2 text-center">
+
+					<button type="button" class="btn btn-default btn-collapse" aria-label="Left Align" data-toggle="collapse" data-target="#legal-attrs">
+  						<span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
+					</button>
+
+				</div>
+			</div>
+
+		</div>
+
+		<div id="legal-attrs" class="row text-center collapse">
+			<div class="col-sm-10 col-sm-offset-1">
+				<table class="table">
+					<tbody>
+					<% var nLegal = 0;%>
+					<% for(var attr in legalAttributes){ %>
+					<% nLegal++; %>
+						<tr>
+							<td><p class="attribute-name"><%= legalAttributes[attr] %></p></td>
+							<td>
+								<input id="<%= 'legal'+nLegal+'req'%>" type="radio" name="<%= attr %>" value="req"><label for="<%= attr %>">Request</label>
+								<input id="<%= 'legal'+nLegal+'opt'%>" type="radio" name="<%= attr %>" value="opt" checked="checked"><label for="<%= attr %>">Optional</label>
+								<input id="<%= 'legal'+nLegal+'not'%>" type="radio" name="<%= attr %>" value="not"><label for="<%= attr %>">Do not request</label>
+							</td>
+						</tr>
+					<% } %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="row text-center">
+		<div class="col-sm-12">
+			<input type="submit" class="attr-btn btn btn-lg" value="Submit Request">
+		</div>
+	</div>
+
+</form>
 
 <script>
-	$("#header ul").append('<li><a href="/createdocument">Create Document</a></li>');
+	$("#breadcrumb").append('<li><a href="/createdocument">Create Document</a></li>');
 </script>
 
 <script type="text/javascript">
@@ -188,6 +202,7 @@
 			col.checked=true;
 		}
 	}
+
 </script>
 
 <% include footer %>

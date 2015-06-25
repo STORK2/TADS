@@ -1,0 +1,93 @@
+/*
+ * Globals
+ */
+
+.site-wrapper {
+  display: table;
+  width: 60%;
+  height: 100%; /* For at least Firefox */
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 100%;
+}
+
+.header-img{
+  width: 450px;
+  margin-right: 100px;
+  margin-left: 0;
+}
+
+.header-brand{
+  padding: 10px 10px 10px 10px;
+  font-size: 20px;
+  color: #b6121b;
+  text-decoration: none;
+  margin-left: 100px;
+  margin-right: 0;
+}
+
+.panel {
+  height: inherit;
+}
+
+.service-btn {
+  width: 300px;
+}
+
+.jumbotron {
+  padding: 35px 30px 35px 30px;
+}
+
+.disclaimer{
+  border-top: thin solid black;
+  font-size: 12px;
+  margin-top: 30px;
+}
+
+.select-country{
+  margin-top: 16px;
+}
+
+.attributes-main-selector {
+  padding-top: 22px;
+  padding-left: 98px;
+}
+
+.attribute-name {
+  padding-top: 10px;
+  padding-left: 60px;
+  text-align: left;
+  font-size: 16px;
+}
+
+.table {
+  margin-top: -1px;
+  margin-bottom: 0;
+}
+
+.table > tbody > tr > td {
+  padding: 0 0 0 0;
+}
+.table > tbody > tr > td, .table > tbody > tr > th {
+  vertical-align: middle;
+  line-height: 1.2;
+  text-align: left;
+  width: 423px;
+}
+
+.attr-btn {
+  height: 50px;
+  width: 100%;
+  margin-bottom: 100px;
+  color: white;
+  background-color: #b6121b;
+}
+
+.btn-collapse {
+  margin-top: 15px;
+}
+
+label {
+  padding-left: 4px;
+  padding-right: 30px;
+}

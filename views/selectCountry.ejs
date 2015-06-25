@@ -1,26 +1,35 @@
 <% include header %>
 
 <div class="row">
-	<form action="/managedocumentsauth/samlreq" method="post">
-		<div class="row">
-			<div class="small-4 columns">
-				<h4>Select Your Country of Origin:</h4>
+	<div class="col-sm-12">
+		<form action="/managedocumentsauth/samlreq" method="post">
+			<div class="panel panel-default">
+				<div class="row">
+					<div class="col-sm-4 col-sm-offset-1">
+						<h3>Select your country of origin:</h3>
+					</div>
+
+					<div class="col-sm-4">
+						<div class="form-group">
+							<select class="form-control select-country">
+								<% for(var cc in countryCodes){ %>
+									<option value="<%= cc %>"> <%= countryCodes[cc] %> </option>
+								<% } %>
+							</select>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="small-4 columns">
-				<select name="citizenCC">
-					<% for(var cc in countryCodes){ %>
-					<option value="<%= cc %>"> <%= countryCodes[cc] %> </option>
-					<% } %>
-				</select>
+
+			<div class="row text-center">
+				<div class="col-sm-12">
+					<input type="submit" class="attr-btn btn btn-lg" value="Submit Request">
+				</div>
 			</div>
-			<div class="small-4 columns"></div>
-		</div>
-		<div class="row text-center">
-			<hr>
-			<input type="submit" class="button large" value="Submit Request">
 		</div>
 	</form>
 </div>
+
 
 <% include footer %>
 

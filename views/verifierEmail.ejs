@@ -1,48 +1,63 @@
 <% include header %>
 
-<style type="text/css">
-	textarea {
-		resize: none;
-	}
-</style>
 
-<div class="row" align="center">
-	<h3>Document Verification</h3>
-	<hr>
+
+<div class="row">
+	<div class="col-sm-12">
+
+		<div class="jumbotron text-left" style="margin-bottom: 20px;">
+			<h3>Document Verification</h3>
+			<p>Please provide us your e-mail so that we can send you a link to give you access
+				to the document verification page.</p>
+		</div>
+
+	</div>
+
 	<form action="/verifydocument/sendmail" method="post">
-		<div class="small-8 columns">
-			<label> &nbsp; </label>
-			<div align="justify">
-				Please give us your email your e-mail so that we can send you an unique URL that will provide you access
-				to the document verification page. 
+
+		<div class="col-sm-10">
+
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1">e-mail</span>
+				<input name="email" type="text" class="form-control" placeholder="user@example.com" aria-describedby="basic-addon1">
 			</div>
+
 		</div>
-		<div class="small-3 columns">
-			<label>email</label>
-			<input name="email" type="text"/>
-		</div>
-		<div class="small-1 columns">
-			<label> &nbsp; </label>
-			<input type="submit" class="button tiny" value="Submit"/>
+		<div class="col-sm-2 columns">
+			<input type="submit" class="btn btn-default attr-btn" style="height: auto; margin-bottom: 20px;" value="Submit"/>
 		</div>
 	</form>
 </div>
 
-<% if(key == 'success'){ %>
-<div class="row" align="center">
-	<h5>email Successfully sent!</h5>
-</div>
-<% } %>
-<% if(key == 'failure'){ %>
-<div class="row" align="center">
-	<h5>There was a problem, the email could not be sent</h5>
-</div>
-<% } %>
+	<% if(key === 'success'){ %>
 
-<script>
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="alert alert-success">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<strong>Success!</strong> The e-mail was successfully sent.
+			</div>
+		</div>
+	</div>
 
-	$("#header ul").append('<li><a href="/verifydocument">Document Verification</a></li>');
+	<% } %>
+	<% if(key === 'failure'){ %>
 
-</script>
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="alert alert-danger">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<strong>Error!</strong> There was an error, please try again.
+			</div>
+		</div>
+	</div>
+	
+	<% } %>
 
-<% include footer %>
+	<script>
+
+		$("#breadcrumb").append('<li><a href="/verifydocument">Document Verification</a></li>');
+
+	</script>
+
+	<% include footer %>
