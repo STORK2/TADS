@@ -20,7 +20,7 @@ exports.createSAMLRequest = function(samlAttrs, callback){
 	var attrList = java.newInstanceSync("eu.stork.peps.auth.commons.PersonalAttributeList");
 	var pepsURL = samlAttrs.pepsURL;
 	var qaa = samlAttrs.qaa;
-	var citizen = samlAttrs.citizenCC;
+	var citizenCC = samlAttrs.citizenCC;
 	var returnURL = samlAttrs.returnURL;
 	var reqAttrList = samlAttrs.attrList;
 
@@ -40,7 +40,7 @@ exports.createSAMLRequest = function(samlAttrs, callback){
 			var sAMLRequest = new Buffer(sAMLRequestToken).toString('base64');
 
 			var samlReq = {
-				country: spCountry,
+				country: citizenCC,
 				SAMLRequest: sAMLRequest,
 				destination: pepsURL,
 				SAMLReqId: sAMLRequestId
