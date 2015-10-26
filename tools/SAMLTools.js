@@ -31,7 +31,7 @@ exports.createSAMLRequest = function(samlAttrs, callback){
 		attrList.addSync(pAttr);
 	}
 
-	STORKSAMLUtils.generateSAMLRequest(pepsURL, qaa, citizen, returnURL, 
+	STORKSAMLUtils.generateSAMLRequest(pepsURL, qaa, citizenCC, returnURL, 
 		attrList, function(err, STORKAuthnReq){
 			if(err) return callback(err);
 
